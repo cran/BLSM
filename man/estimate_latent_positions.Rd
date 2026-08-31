@@ -4,11 +4,25 @@
 \alias{estimate_latent_positions}
 \title{BLSM simulation}
 \usage{
-estimate_latent_positions(Y, W, procrustean = TRUE, k = 2, alpha = 2,
-  nscan = 8 * 10^5, burn_in = 5 * 10^5, odens = 10^3, zdelta = 1,
-  z_norm_prior_mu = 0, z_norm_prior_sd = 10, adelta = 0.3,
-  a_exp_prior_a = 1, a_exp_prior_b = 1, dynamic_plot = FALSE,
-  dynamic_circles = FALSE, ...)
+estimate_latent_positions(
+  Y,
+  W,
+  procrustean = TRUE,
+  k = 2,
+  alpha = 2,
+  nscan = 8 * 10^5,
+  burn_in = 5 * 10^5,
+  odens = 10^3,
+  zdelta = 1,
+  z_norm_prior_mu = 0,
+  z_norm_prior_sd = 10,
+  adelta = 0.3,
+  a_exp_prior_a = 1,
+  a_exp_prior_b = 1,
+  dynamic_plot = FALSE,
+  dynamic_circles = FALSE,
+  ...
+)
 }
 \arguments{
 \item{Y}{Adjacency matrix of the network}
@@ -47,17 +61,17 @@ estimate_latent_positions(Y, W, procrustean = TRUE, k = 2, alpha = 2,
 }
 \value{
 Returns a "BLSM object" (\code{blsm_obj}), i.e. a list containing:
-\itemize{
-\item \code{Alpha }{\eqn{\alpha} values from the sampled iterations}
-\item \code{Likelihood }{Log-likelihood values from the sampled iterations}
-\item \code{Iterations }{Latent space coordinates from the sampled iterations. Latent positions are stored in a
+\describe{
+\item{\code{Alpha}}{\eqn{\alpha} values from the sampled iterations}
+\item{\code{Likelihood}}{Log-likelihood values from the sampled iterations}
+\item{\code{Iterations}}{Latent space coordinates from the sampled iterations. Latent positions are stored in a
 3D array whose dimensions are given by (1: number of nodes, 2: space dimensionality, 3: number of iterations).
 In the non-Procrustean framework the latent distances are given instead of the positions: another 3D array is returned, whose dimensions
 are given by (1: number of nodes, 2: number of nodes, 3: number of iterations). The command needed in order to get the average values over the iterations for
 either the positions or the distances is \code{rowMeans(blsm_obj$Iterations, dims=2)} (see example below).}
-\item \code{StartingPositions }{Latent space coordinates right after the initialization step. In the non-Procrustean framework starting distances are given instead.}
-\item \code{Matrix }{Original matrices of the network (adjacency and BLSM weights)}
-\item \code{Parameters }{List of parameters specified during the call to \link[BLSM]{estimate_latent_positions}}
+\item{\code{StartingPositions}}{Latent space coordinates right after the initialization step. In the non-Procrustean framework starting distances are given instead.}
+\item{\code{Matrix}}{Original matrices of the network (adjacency and BLSM weights)}
+\item{\code{Parameters}}{List of parameters specified during the call to \link[BLSM]{estimate_latent_positions}}
 }
 }
 \description{
